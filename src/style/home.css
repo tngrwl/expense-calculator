@@ -1,0 +1,12 @@
+.links-tab{
+    display: flex;
+    justify-content: space-around;
+    background-color: #b3e094 ;
+    flex-wrap: unset;
+    align-items: center;
+}
+
+.links{
+    margin: 10px;
+    border: 2px;
+}
