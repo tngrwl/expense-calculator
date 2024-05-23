@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyReactAppBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+  MyReactAppDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Origins:
+          -
+            DomainName: !GetAtt MyReactAppBucket.DomainName
+            S3OriginConfig:
+              OriginAccessIdentity: !Ref S3OriginAccessIdentity
+        DefaultRootObject: index.html
+        Restrictions:
+          GeoRestriction:
+            RestrictionType: none
+        ViewerCertificate:
+          AcmCertificateArn: !Ref MyACMCert  # Replace with your ACM certificate ARN
+          SslProtocol: TLSv1.2_20140605
+
+Outputs:
+  DistributionDomainName:
+    Description: CloudFront Distribution Domain Name
+    Value: !GetAtt MyReactAppDistribution.DomainName

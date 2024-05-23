@@ -129,7 +129,7 @@ const Expense = (props) =>{
     <Link to={'/earning'}>Earning</Link>
     <Link to={'/expense'}>Expense</Link> */}
     <Modal open={isOpen} onOk={submit} onCancel={() => setIdOpen(false)} okText="Submit">
-        <div><span>Add Amount: </span> <Input value={amount} onChange={e=>setAmount(e.target.value)}></Input></div>
+        <div><span>Add Amount: </span> <Input type="number"  value={amount} onChange={e=>setAmount(e.target.value)}></Input></div>
         <div><span>Enter Title: </span> <Input value={title} onChange={e=>setTitle(e.target.value)}></Input></div>
         {/* <div> <Button onClick={submit}>Submit</Button></div> */}
     </Modal>
